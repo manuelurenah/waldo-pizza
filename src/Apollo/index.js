@@ -4,10 +4,10 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http';
 
-import { Global } from '../constants';
+import { GRAPHQL_API_URL } from '../utils/constants';
 
 const httpLink = new HttpLink({
-  uri: Global.GRAPHQL_API_URL,
+  uri: GRAPHQL_API_URL,
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -25,9 +25,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const link = ApolloLink.from([httpLink, errorLink]);
-
 const cache = new InMemoryCache();
-
 const client = new ApolloClient({
   link,
   cache,

@@ -5,6 +5,7 @@ import { onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http';
 
 import { GRAPHQL_API_URL } from '../utils/constants';
+import { typeDefs, resolvers } from './resolvers';
 
 const httpLink = new HttpLink({
   uri: GRAPHQL_API_URL,
@@ -29,6 +30,8 @@ const cache = new InMemoryCache();
 const client = new ApolloClient({
   link,
   cache,
+  typeDefs,
+  resolvers,
 });
 
 export default client;

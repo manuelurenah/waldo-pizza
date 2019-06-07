@@ -2,8 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
-import Loading from '../../components/Loading';
-import ErrorMessage from '../../components/ErrorMessage';
+import { ErrorMessage, Loading, PizzaList, Cart } from '../../components';
 
 const GET_PIZZA_SIZES = gql`
   {
@@ -24,12 +23,13 @@ const Main = () => (
       const { pizzaSizes } = data;
 
       return (
-        <div className="main-container">
-          <ul className="pizza-size-list">
-            {pizzaSizes.map(size => (
-              <li key={size.name} className="pizza-size">{size.name} ${size.basePrice}</li>
-            ))}
-          </ul>
+        <div className="row main-container">
+          <div className="col-8">
+            <PizzaList pizzas={pizzaSizes} />
+          </div>
+          <div className="col-4">
+            <Cart />
+          </div>
         </div>
       );
     }}

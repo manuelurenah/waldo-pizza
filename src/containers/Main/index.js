@@ -24,12 +24,8 @@ const Main = () => (
 
       return (
         <div className="row main-container">
-          <div className="col-8">
-            <PizzaList pizzas={pizzaSizes} />
-          </div>
-          <div className="col-4">
-            <Cart />
-          </div>
+          <PizzaList pizzas={pizzaSizes} />
+          <Cart />
         </div>
       );
     }}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
   <header className="row app-header">
-    <div className="col header-title col">Waldo Pizza</div>
+    <h2 className="col header-title">Waldo Pizza</h2>
   </header>
 );
 

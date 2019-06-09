@@ -15,7 +15,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) =>
       console.error(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
       ),
     );
   }
@@ -32,6 +32,12 @@ const client = new ApolloClient({
   cache,
   typeDefs,
   resolvers,
+});
+
+cache.writeData({
+  data: {
+    cartItems: [],
+  },
 });
 
 export default client;

@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Button = ({ customClass, text, type }) => (
-  <a
-    href="#top"
+const Button = ({ customClass, onButtonClick, text, type, ...otherProps }) => (
+  <button
+    onClick={onButtonClick}
     className={`btn btn-${type} ${customClass}`}
   >
     {text}
-  </a>
+  </button>
 );
 
 export default Button;

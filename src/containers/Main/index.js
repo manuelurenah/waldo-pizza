@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
@@ -9,27 +9,57 @@ const GET_PIZZA_SIZES = gql`
     pizzaSizes {
       name,
       maxToppings,
-      basePrice
+      basePrice,
+      toppings {
+        topping {
+          name,
+          price
+        }
+      }
     }
   }
 `;
 
-const Main = () => (
-  <Query query={GET_PIZZA_SIZES}>
-    {({ data, loading, error }) => {
-      if (error) return <ErrorMessage error={error} />;
-      if (loading) return <Loading />;
+class Main extends Component {
+  state = {
+    cartItems: []
+  }
 
-      const { pizzaSizes } = data;
+  addPizzaToCart = (pizza) => {
+    console.log({pizza});
 
-      return (
-        <div className="row main-container">
-          <PizzaList pizzas={pizzaSizes} />
-          <Cart />
-        </div>
-      );
-    }}
-  </Query>
-);
+    this.setState({
+      cartItems: [
+        ...this.state.cartItems,
+        pizza
+      ]
+    });
+  }
+
+  render() {
+    const { cartItems } = this.state;
+
+    return (
+      <Query query={GET_PIZZA_SIZES}>
+        {({ data, loading, error }) => {
+          if (error) return <ErrorMessage error={error} />;
+          if (loading) return <Loading />;
+
+          const { pizzaSizes } = data;
+
+          return (
+            <div className="row main-container">
+              <PizzaList
+                pizzas={pizzaSizes}
+                onSelectPizza={this.addPizzaToCart}
+              />
+              <Cart items={cartItems} />
+            </div>
+          );
+        }}
+      </Query>
+    );
+  }
+}
 
 export default Main;

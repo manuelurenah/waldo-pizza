@@ -6,8 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import apolloClient from './Apollo';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import './style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>

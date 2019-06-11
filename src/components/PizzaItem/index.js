@@ -1,7 +1,7 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 import { PIZZA_IMG_URLS } from '../../utils/constants';
-import { Button } from '..';
 
 const PizzaItem = ({ name, basePrice, maxToppings, onButtonClick }) => (
   <div key={name} className="col pizza-size-item">
@@ -13,12 +13,7 @@ const PizzaItem = ({ name, basePrice, maxToppings, onButtonClick }) => (
           Base Price: ${basePrice} <br />
           Max Toppings: {maxToppings ? maxToppings : 'Unlimited'}
         </p>
-        <Button
-          customClass="select-pizza-btn"
-          text="Select"
-          type="primary"
-          onButtonClick={onButtonClick}
-        />
+        <Button onClick={onButtonClick}>Select</Button>
       </div>
     </div>
   </div>

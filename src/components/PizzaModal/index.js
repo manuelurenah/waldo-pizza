@@ -1,29 +1,44 @@
 import React from 'react';
-import { Button } from '..';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
-const PizzaModal = ({ name, toppings }) => (
-  <div className="modal fade" id={`${name}-pizza-modal`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div className="modal-dialog" role="document">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title" id="exampleModalLabel">{name} Pizza</h5>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div className="modal-body">
-          {toppings.map((topping, index) => (
-            <div key={index} className="topping-item">
-              <input type="checkbox" name={topping.name} value={topping.name} />{topping.name} (${topping.price})
-            </div>
-          ))}
-        </div>
-        <div className="modal-footer">
-          <Button type="primary" text="Add To Cart" />
-        </div>
-      </div>
-    </div>
-  </div>
-);
+const PizzaModal = ({
+  show = false,
+  actionClick = () => {},
+  selectedPizza = {},
+  handleClose = () => {},
+  selectedToppings = [],
+  handleToppingChange= () => {}
+}) => {
+  const { maxToppings, toppings } = selectedPizza;
+  const shouldBeDisabled = maxToppings && selectedToppings.length >= maxToppings;
+
+  return (
+    <Modal show={show}>
+      <Modal.Header>
+        <Modal.Title>Select your Toppings</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {toppings && toppings.map(({ topping }) => (
+          <div key={topping.name} className="topping-item">
+            <Form.Check
+              type="checkbox"
+              label={`${topping.name} ($${topping.price})`}
+              name={topping.name}
+              checked={selectedToppings.includes(topping)}
+              onChange={handleToppingChange.bind(null, topping)}
+              disabled={shouldBeDisabled && !selectedToppings.includes(topping)}
+            />
+          </div>
+        ))}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <Button onClick={actionClick.bind(null, selectedPizza)}>Add to Cart</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
 export default PizzaModal;

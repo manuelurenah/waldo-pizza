@@ -1,27 +1,41 @@
 import React from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import { CartItem } from '..';
 
-const Cart = ({ items }) => {
+const Cart = ({ items, onRemoveClick }) => {
   const itemsLength = items.length;
-  const subtotal = items.reduce((total, current) => total += current.price, 0);
+  const subtotal = items.reduce((total, item) => {
+    total += item.basePrice;
+    total += item.toppings.reduce((accum, topping) => accum += topping.price, 0);
+
+    return total;
+  }, 0);
 
   return (
-    <div className="col-4 cart-container">
-      <div className="row title-container">
-        <h3 className="col">Cart</h3>
-      </div>
-      <div className="row pizza-size-list">
-        {items.map(item => <CartItem key={item.name} {...item} />)}
-      </div>
-      <div className="row subtotal-container">
-        <div className="col">
+    <Col xs lg={4} className="cart-container">
+      <Row className="title-container">
+        <Col><h3>Cart</h3></Col>
+      </Row>
+      <Row className="pizza-size-list">
+        {items.map((item, index) => (
+          <CartItem
+            key={index}
+            removeFromCart={onRemoveClick.bind(null, index)}
+            {...item}
+          />
+        ))}
+      </Row>
+      <Row className="subtotal-container">
+        <Col>
           <p>Subtotal ({itemsLength} item(s))</p>
-        </div>
-        <div className="col">
-          <p>$ {subtotal}</p>
-        </div>
-      </div>
-    </div>
+        </Col>
+        <Col>
+          <p>${subtotal.toFixed(2)}</p>
+        </Col>
+      </Row>
+    </Col>
   );
 };
 

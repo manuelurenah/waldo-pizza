@@ -1,12 +1,15 @@
 import React from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import PizzaItem from '../PizzaItem';
 
 const PizzaList = ({ pizzas, onSelectPizza }) => (
-  <div className="col-8 menu-container">
-    <div className="row title-container">
-      <h3 className="col">Menu</h3>
-    </div>
-    <div className="row pizza-size-list">
+  <Col xs lg={8} className="menu-container">
+    <Row className="title-container">
+      <Col><h3>Menu</h3></Col>
+    </Row>
+    <Row className="pizza-size-list">
       {pizzas.map(pizza => (
         <PizzaItem
           key={pizza.name}
@@ -14,8 +17,8 @@ const PizzaList = ({ pizzas, onSelectPizza }) => (
           {...pizza}
         />
       ))}
-    </div>
-  </div>
+    </Row>
+  </Col>
 );
 
 export default PizzaList;

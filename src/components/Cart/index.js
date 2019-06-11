@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row';
 
 import { CartItem } from '..';
 
+import './style.css';
+
 const Cart = ({ items, onRemoveClick }) => {
   const itemsLength = items.length;
   const subtotal = items.reduce((total, item) => {
@@ -14,11 +16,11 @@ const Cart = ({ items, onRemoveClick }) => {
   }, 0);
 
   return (
-    <Col xs lg={4} className="cart-container">
+    <Col xs={12} lg={4} className="cart-container text-left">
       <Row className="title-container">
-        <Col><h3>Cart</h3></Col>
+        <Col as="h3">Cart</Col>
       </Row>
-      <Row className="pizza-size-list">
+      <Row className="cart-items-list">
         {items.map((item, index) => (
           <CartItem
             key={index}
@@ -28,12 +30,8 @@ const Cart = ({ items, onRemoveClick }) => {
         ))}
       </Row>
       <Row className="subtotal-container">
-        <Col>
-          <p>Subtotal ({itemsLength} item(s))</p>
-        </Col>
-        <Col>
-          <p>${subtotal.toFixed(2)}</p>
-        </Col>
+        <Col as="h5">Subtotal ({itemsLength} item(s))</Col>
+        <Col as="h5" className="text-right">${subtotal.toFixed(2)}</Col>
       </Row>
     </Col>
   );

@@ -5,9 +5,9 @@ import Row from 'react-bootstrap/Row';
 import PizzaItem from '../PizzaItem';
 
 const PizzaList = ({ pizzas, onSelectPizza }) => (
-  <Col xs lg={8} className="menu-container">
+  <Col xs={12} lg={8} className="menu-container text-left">
     <Row className="title-container">
-      <Col><h3>Menu</h3></Col>
+      <Col as="h3">Menu</Col>
     </Row>
     <Row className="pizza-size-list">
       {pizzas.map(pizza => (

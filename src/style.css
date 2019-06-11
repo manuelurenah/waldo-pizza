@@ -12,36 +12,3 @@ body,
   min-width: 100vw;
   overflow-x: hidden;
 }
-
-.app-container {
-  min-height: 100vh;
-  text-align: center;
-}
-
-.app-header {
-  align-items: center;
-  background-color: white;
-  display: flex;
-  font-size: calc(10px + 2vmin);
-  min-height: 10vh;
-}
-
-.main-container {
-  min-height: 90vh;
-}
-
-.card-title {
-  text-transform: capitalize;
-}
-
-.card-text {
-  font-size: 0.75rem;
-}
-
-.title-container {
-  padding: 0 16px;
-}
-
-.select-pizza-btn {
-  width: 100%;
-}

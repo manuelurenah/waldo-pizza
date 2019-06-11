@@ -1,4 +1,3 @@
-import Button from './Button';
 import Cart from './Cart';
 import CartItem from './CartItem';
 import ErrorMessage from './ErrorMessage';
@@ -9,7 +8,6 @@ import PizzaList from './PizzaList';
 import PizzaModal from './PizzaModal';
 
 export {
-  Button,
   Cart,
   CartItem,
   ErrorMessage,

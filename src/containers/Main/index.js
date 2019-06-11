@@ -101,7 +101,7 @@ class Main extends Component {
           const { pizzaSizes } = data;
 
           return (
-            <Row className="main-container">
+            <Row as="main" className="main-container">
               <PizzaList
                 pizzas={pizzaSizes}
                 onSelectPizza={this.selectPizzaSize}

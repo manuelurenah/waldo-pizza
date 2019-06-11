@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
+import './style.css';
+
 const PizzaModal = ({
   show = false,
   actionClick = () => {},
@@ -15,8 +17,8 @@ const PizzaModal = ({
   const shouldBeDisabled = maxToppings && selectedToppings.length >= maxToppings;
 
   return (
-    <Modal show={show}>
-      <Modal.Header>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
         <Modal.Title>Select your Toppings</Modal.Title>
       </Modal.Header>
       <Modal.Body>

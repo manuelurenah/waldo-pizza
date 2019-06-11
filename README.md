@@ -2,6 +2,8 @@
 
 Small project demostrating how to use React + Apollo to develop a Pizza Cart Webapp
 
+![Screenshot](/example.png?raw=true "Screenshot")
+
 ## 🖥 Tech Stack
 
 * ⚛️ React (create-react-app)
